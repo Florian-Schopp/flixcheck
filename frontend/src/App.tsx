@@ -8,15 +8,15 @@ import { LangContext } from "./LangProvider";
 type location = {
 	lat: number;
 	lon: number;
-}
+};
 const App = () => {
 	const i18n = useContext(LangContext);
-	const APIKEY = "AIzaSyAwL1Rgymt_Xd6WuC1QW5m3EioJKMdVOKw"
+	const APIKEY = "AIzaSyAwL1Rgymt_Xd6WuC1QW5m3EioJKMdVOKw";
 	const [location, setLocation] = useState<location>();
 	const [ip, setIp] = useState("");
 	const [error, setError] = useState<string>();
 	const ipRegex = new RegExp(
-		/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/
+		/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/,
 	);
 
 	const locate = async () => {
@@ -31,16 +31,20 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
-	}, [location])
+		window.scrollTo({
+			top: document.documentElement.scrollHeight,
+			behavior: "smooth",
+		});
+	}, [location]);
 
 	useEffect(() => {
 		if (ip !== "" && !ipRegex.test(ip)) {
-			setError(i18n.translate("invalidIP"))
+			setError(i18n.translate("invalidIP"));
 		} else {
-			setError(undefined)
+			setError(undefined);
 		}
-	}, [ip])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ip]);
 	return (
 		<>
 			<div className="hero">
@@ -50,7 +54,9 @@ const App = () => {
 					<div className="form-group fit-content h-100 align-content-center ">
 						<div className="d-flex fit-content gap-16">
 							<div>
-								<label htmlFor="ip-address" className="ip-label">{i18n.translate("ip")}</label>
+								<label htmlFor="ip-address" className="ip-label">
+									{i18n.translate("ip")}
+								</label>
 								<div className="d-flex">
 									<input
 										className="form-control"
@@ -78,23 +84,26 @@ const App = () => {
 					</div>
 				</div>
 				{location ? (
-					<button className="btn scrollDown" onClick={() => {
-						window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-					}}>
+					<button
+						className="btn scrollDown"
+						onClick={() => {
+							window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+						}}
+					>
 						<ScrollDown fill="inherit" width={48} height={48} />
 					</button>
 				) : null}
-
 			</div>
 			{location ? (
 				<div className="section">
 					<div className="row justify-content-center m-0 mt-5 mb-5">
 						<div className="col-md-7 text-center">
-							<h3 className="display-4" >{i18n.translate("ipLocation")}</h3>
+							<h3 className="display-4">{i18n.translate("ipLocation")}</h3>
 						</div>
 					</div>
 					<div className="d-flex" style={{ gap: 64, justifyContent: "center" }}>
 						<iframe
+							title="map"
 							width="800"
 							height="700"
 							loading="lazy"
@@ -112,9 +121,12 @@ const App = () => {
 						</table>
 					</div>
 					<div className="to-top m-4">
-						<button className="btn" onClick={() => {
-							window.scrollTo({ top: 0, behavior: "smooth" });
-						}}>
+						<button
+							className="btn"
+							onClick={() => {
+								window.scrollTo({ top: 0, behavior: "smooth" });
+							}}
+						>
 							<ScrollUp />
 						</button>
 					</div>

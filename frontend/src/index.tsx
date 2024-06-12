@@ -6,4 +6,8 @@ import { LangProvider } from "./LangProvider";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
-root.render(<LangProvider><App /></LangProvider>);
+root.render(
+  <LangProvider>
+    <App />
+  </LangProvider>,
+);
