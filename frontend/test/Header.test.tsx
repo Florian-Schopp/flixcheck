@@ -11,7 +11,7 @@ describe("Header", () => {
         <Header />
       </LangProvider>,
     );
-    screen.getByText("Contact");
+    screen.getByText("Docs");
   });
 
   it("should change language to german", async () => {
