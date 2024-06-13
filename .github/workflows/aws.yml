@@ -5,7 +5,7 @@ on:
     branches: [ "master", "dev" ]
 
 env:
-  AWS_REGION: us-east-1                  # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: eu-north-1                 # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: flixcheck-repo           # set this to your Amazon ECR repository name
 
 permissions:
