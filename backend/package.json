@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npx tsc",
+    "build": "esbuild src/app.ts --bundle --platform=node --outfile=dist/app.js",
+    "doc": "apidoc -i src/ -o doc/",
     "start": "node dist/app.js",
     "dev": "tsx watch src/app.ts"
   },

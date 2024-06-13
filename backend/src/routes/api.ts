@@ -17,7 +17,7 @@ const ipRegex = new RegExp(
 
 router.get('/getLocation', (req, res) => {
   const { ip } = req.query;
-  if (!ipRegex.test(ip as string)) {
+  if (ip && !ipRegex.test(ip as string)) {
     res.status(400).send('Invalid IP address');
     return;
   }

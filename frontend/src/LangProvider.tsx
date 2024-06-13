@@ -12,7 +12,7 @@ export type langCtx = {
 // Create the language context
 export const LangContext = createContext<langCtx>({
   language: initialLanguage,
-  updateLanguage: () => {},
+  updateLanguage: () => { },
   translate: () => "",
 });
 
@@ -24,13 +24,12 @@ export const LangProvider = (props: { children: React.ReactElement }) => {
   const updateLanguage = (newLanguage: string) => {
     setLanguage(newLanguage);
   };
-  // Function to translate the given key based on the current language
+
   const translate = (key: transKeys) => {
     const translations = translationKeys[language];
     if (translations && translations[key]) {
       return translations[key];
     }
-    // Return the key itself if no translation is found
     return key;
   };
 

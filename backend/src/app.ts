@@ -3,7 +3,7 @@ import express from 'express'
 import logger from 'morgan'
 import cors from "cors"
 import apiRouter from './routes/api';
-const port = process.env.PORT || 4000;
+const port = process.env.PORT ?? 4000;
 const app = express();
 
 // view engine setup

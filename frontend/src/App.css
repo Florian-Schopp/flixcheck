@@ -23,6 +23,7 @@ a:hover {
   color: white;
   text-decoration: none;
   text-emphasis: none;
+  cursor: pointer;
 
   :hover {
     color: green;

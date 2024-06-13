@@ -4,6 +4,7 @@ import Header from "./Header";
 import { ScrollDown } from "./ScrollDown";
 import { ScrollUp } from "./ScrollUp";
 import { LangContext } from "./LangProvider";
+import IpInput from "./IpInput";
 
 type location = {
 	lat: number;
@@ -13,14 +14,10 @@ const App = () => {
 	const i18n = useContext(LangContext);
 	const APIKEY = "AIzaSyAwL1Rgymt_Xd6WuC1QW5m3EioJKMdVOKw";
 	const [location, setLocation] = useState<location>();
-	const [ip, setIp] = useState("");
-	const [error, setError] = useState<string>();
-	const ipRegex = new RegExp(
-		/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/,
-	);
 
-	const locate = async () => {
-		const url = new URL("http://localhost:4000/api/getLocation");
+
+	const locate = async (ip: string) => {
+		const url = new URL(`${window.location.href}api/getLocation`);
 		url.searchParams.set("ip", ip);
 		const res = await fetch(url);
 		if (!res.ok) {
@@ -37,55 +34,16 @@ const App = () => {
 		});
 	}, [location]);
 
-	useEffect(() => {
-		if (ip !== "" && !ipRegex.test(ip)) {
-			setError(i18n.translate("invalidIP"));
-		} else {
-			setError(undefined);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ip]);
+
 	return (
 		<>
 			<div className="hero">
 				<Header />
-
-				<div className="fit-content ip-input d-flex" style={{ height: "80%" }}>
-					<div className="form-group fit-content h-100 align-content-center ">
-						<div className="d-flex fit-content gap-16">
-							<div>
-								<label htmlFor="ip-address" className="ip-label">
-									{i18n.translate("ip")}
-								</label>
-								<div className="d-flex">
-									<input
-										className="form-control"
-										id="ip-address"
-										aria-describedby="IP-Address"
-										placeholder={i18n.translate("leaveBlankForCurrentIP")}
-										value={ip}
-										onChange={(evt) => {
-											setIp(evt.target.value);
-										}}
-									/>
-									<button
-										type="button"
-										className="btn btn-primary"
-										disabled={error != null}
-										onClick={locate}
-									>
-										{i18n.translate("locate")}
-									</button>
-								</div>
-
-								<div className="text-danger helper">{error}</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<IpInput fetch={locate} />
 				{location ? (
 					<button
-						className="btn scrollDown"
+						id="scroll-down"
+						className="btn scroll-down"
 						onClick={() => {
 							window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
 						}}
@@ -122,6 +80,7 @@ const App = () => {
 					</div>
 					<div className="to-top m-4">
 						<button
+							id="scroll-up"
 							className="btn"
 							onClick={() => {
 								window.scrollTo({ top: 0, behavior: "smooth" });

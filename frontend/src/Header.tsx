@@ -11,7 +11,7 @@ const Header = () => {
                 <nav className="primary-menu">
                     <ul className="header-menu">
                         <li className="menu-item" style={{ marginRight: "auto" }}>
-                            <a href="/home" className="menu-link">
+                            <a href="/" className="menu-link">
                                 <div>Home</div>
                             </a>
                         </li>
@@ -39,7 +39,7 @@ const Header = () => {
                             </a>
                         </li>
                         <li className="menu-item">
-                            <a href="/github" className="menu-link">
+                            <a href="https://github.com/Florian-Schopp/flixcheck" className="menu-link">
                                 <div>Github Repository</div>
                             </a>
                         </li>
