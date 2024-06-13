@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Header from "./Header";
 import { ScrollDown } from "./ScrollDown";
 import { ScrollUp } from "./ScrollUp";
-import { LangContext } from "./LangProvider";
+import { LangContext, transKeys } from "./LangProvider";
 import IpInput from "./IpInput";
 
 type location = {
@@ -60,19 +60,19 @@ const App = () => {
               <h3 className="display-4">{i18n.translate("ipLocation")}</h3>
             </div>
           </div>
-          <div className="d-flex" style={{ gap: 64, justifyContent: "center" }}>
+          <div className="d-flex ip-location p-3">
             <iframe
               title="map"
-              width="800"
               height="700"
               loading="lazy"
               src={`https://www.google.com/maps/embed/v1/place?key=${APIKEY}&q=${location.lat},${location.lon}`}
+              className="section-content"
             ></iframe>
-            <table className="table table-striped" style={{ maxWidth: 600 }}>
+            <table className="table table-striped section-content">
               <tbody>
                 {Object.entries(location).map(([key, value]) => (
                   <tr key={key}>
-                    <td>{key}</td>
+                    <td>{i18n.translate(key as transKeys)}</td>
                     <td>{value}</td>
                   </tr>
                 ))}

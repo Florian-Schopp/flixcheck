@@ -44,12 +44,26 @@ export const LangProvider = (props: { children: React.ReactElement }) => {
   );
 };
 
-type transKeys =
+export type transKeys =
   | "ip"
   | "invalidIP"
   | "leaveBlankForCurrentIP"
   | "locate"
   | "loading"
+  | "status"
+  | "country"
+  | "countryCode"
+  | "region"
+  | "regionName"
+  | "city"
+  | "zip"
+  | "lat"
+  | "lon"
+  | "timezone"
+  | "isp"
+  | "org"
+  | "as"
+  | "query"
   | "ipLocation";
 
 const translationKeys: Record<string, Record<transKeys, string>> = {
@@ -60,6 +74,20 @@ const translationKeys: Record<string, Record<transKeys, string>> = {
     locate: "Locate",
     ipLocation: "IP Location",
     loading: "Loading...",
+    country: "Country",
+    countryCode: "Country Code",
+    region: "Region Code",
+    regionName: "Region Name",
+    city: "City",
+    zip: "Zip",
+    lat: "Latitude",
+    lon: "Longitude",
+    timezone: "Timezone",
+    isp: "Internet Service Provider",
+    org: "Organization",
+    as: "AS",
+    query: "IP Address",
+    status: "Status",
   },
   de: {
     ip: "IP Addresse",
@@ -68,5 +96,19 @@ const translationKeys: Record<string, Record<transKeys, string>> = {
     locate: "Orten",
     ipLocation: "IP Standort",
     loading: "Laden...",
+    status: "Status",
+    country: "Land",
+    countryCode: "Ländercode",
+    region: "Regionscode",
+    regionName: "Region Name",
+    city: "Stadt",
+    zip: "Postleitzahl",
+    lat: "Längengrad",
+    lon: "Breitengrad",
+    timezone: "Zeilzone",
+    isp: "Internetdienstanbieter",
+    org: "Organisation",
+    as: "AS",
+    query: "IP Addresse",
   },
 };

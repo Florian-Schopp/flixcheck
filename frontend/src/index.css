@@ -1,3 +1,16 @@
+body {
+  margin: 0;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
 .hero {
   background-repeat: no-repeat;
   background-image: url("../public/hero.jpg");
@@ -30,9 +43,7 @@ a:hover {
   }
 }
 
-.ip-address {
-  min-width: 300px;
-}
+
 
 .helper {
   min-height: 24px;
@@ -108,15 +119,46 @@ h3 {
   }
 }
 
-body {
-  margin: 0;
-  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.ip-form {
+  flex-direction: column;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.ip-location {
+  justify-content: center;
+  gap: 64px;
+  flex-direction: column;
+}
+
+.ip-address {
+  min-width: auto;
+}
+
+.desktop {
+  display: none;
+}
+
+.section-content {
+  width: 100%;
+  max-width: 700px;
+}
+
+@media (width> 800px) {
+  .desktop {
+    display: block;
+  }
+
+  .ip-form {
+    flex-direction: row;
+  }
+
+  .ip-address {
+    min-width: 300px;
+  }
+
+  .ip-location {
+    justify-content: center;
+    gap: 64px;
+    flex-direction: row;
+  }
+
 }

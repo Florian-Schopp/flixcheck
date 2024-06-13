@@ -59,5 +59,7 @@ jobs:
         cache-dependency-path: './backend/package-lock.json'
     - name: Install dependencies
       run: npm ci
+    - name: Linting - Prettier
+      run: npm run ci:prettier
     - name: build
       run: npm run build

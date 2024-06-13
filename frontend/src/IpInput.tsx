@@ -20,6 +20,17 @@ const IpInput = (props: {
     }
   }, [ip]);
 
+  const loadFunc = () => {
+    setLoading(true);
+    props
+      .fetch(ip)
+      .catch((err) => setError(err.toString()))
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const disabled = error != null || loading;
   return (
     <div className="fit-content ip-input d-flex" style={{ height: "80%" }}>
       <div className="form-group fit-content h-100 align-content-center ">
@@ -28,13 +39,18 @@ const IpInput = (props: {
             <label htmlFor="ip-address" className="ip-label">
               {i18n.translate("ip")}
             </label>
-            <div className="d-flex gap-16">
+            <div className="gap-16 d-flex ip-form">
               <input
                 className="form-control ip-address"
                 id="ip-address"
                 aria-describedby="IP-Address"
                 placeholder={i18n.translate("leaveBlankForCurrentIP")}
                 value={ip}
+                onKeyDown={(evt) => {
+                  if (evt.key === "Enter" && !disabled) {
+                    loadFunc();
+                  }
+                }}
                 onChange={(evt) => {
                   setIp(evt.target.value);
                 }}
@@ -42,16 +58,8 @@ const IpInput = (props: {
               <button
                 type="button"
                 className="btn btn-primary locate"
-                disabled={error != null || loading}
-                onClick={() => {
-                  setLoading(true);
-                  props
-                    .fetch(ip)
-                    .catch((err) => setError(err.toString()))
-                    .finally(() => {
-                      setLoading(false);
-                    });
-                }}
+                disabled={disabled}
+                onClick={loadFunc}
               >
                 {i18n.translate(loading ? "loading" : "locate")}
               </button>

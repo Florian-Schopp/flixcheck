@@ -2,11 +2,16 @@
   "name": "ip-finder-backend",
   "version": "1.0.0",
   "private": true,
+  "config": {
+    "files": "**/*.{js,jsx,ts,tsx,yml}"
+  },
   "scripts": {
     "build": "esbuild src/app.ts --bundle --platform=node --outfile=dist/app.js",
     "doc": "apidoc -i src/ -o doc/",
     "start": "node dist/app.js",
-    "dev": "tsx watch src/app.ts"
+    "dev": "tsx watch src/app.ts",
+    "prettier": "prettier --write $npm_package_config_files",
+    "ci:prettier": "prettier --check $npm_package_config_files"
   },
   "dependencies": {
     "apidoc": "^1.2.0",
@@ -21,6 +26,7 @@
     "@types/express": "^4.17.21",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.14.2",
+    "prettier": "^3.3.2",
     "tsx": "^4.15.2",
     "typescript": "^5.4.5"
   }

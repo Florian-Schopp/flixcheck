@@ -10,7 +10,7 @@ const Header = () => {
       <div className="w-100 px-2">
         <nav className="primary-menu">
           <ul className="header-menu">
-            <li className="menu-item" style={{ marginRight: "auto" }}>
+            <li className="menu-item desktop" style={{ marginRight: "auto" }}>
               <a href="/" className="menu-link">
                 <div>Home</div>
               </a>
