@@ -24,7 +24,6 @@ router.get(
     res,
   ) => {
     try {
-
       let ip = req.query.get("ip");
 
       if (ip == null || ip === "") {
@@ -50,7 +49,7 @@ router.get(
       const jsonLocation = await loc.json();
       res.send(JSON.stringify(jsonLocation));
     } catch (error: any) {
-      console.log(error)
+      console.log(error);
       res.status(500).send("Internal Server Error");
       logger(error.toString());
     }

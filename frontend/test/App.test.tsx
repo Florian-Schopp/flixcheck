@@ -1,5 +1,11 @@
 import React from "react";
-import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import App from "../src/App";
 import { click } from "@testing-library/user-event/dist/click";
 import { LangProvider } from "../src/LangProvider";
@@ -42,7 +48,7 @@ describe("App", () => {
         target: { value: "8.8.8.8" },
       });
       fireEvent.click(screen.getByRole("button"));
-    })
+    });
     expect(window.fetch).toHaveBeenCalledTimes(1);
     await waitFor(() => screen.getByText("Error: Invalid IP"));
   });
@@ -65,11 +71,11 @@ describe("App", () => {
         }),
     });
     render(<App />);
-    const el = screen.getByTestId("ip-address")
+    const el = screen.getByTestId("ip-address");
     act(() => {
       userEvent.type(el, `8.8.8.8{enter}`);
-    })
-    expect(window.fetch).toHaveBeenCalledTimes(1)
+    });
+    expect(window.fetch).toHaveBeenCalledTimes(1);
     await waitFor(() => screen.getByText("foo"));
     click(screen.getByTestId("scroll-up"));
     expect(window.scrollTo).toHaveBeenCalledTimes(3);
@@ -101,7 +107,7 @@ describe("App", () => {
         target: { value: "8.8.8.8" },
       });
       fireEvent.click(screen.getByRole("button"));
-    })
+    });
 
     expect(window.fetch).toHaveBeenCalledTimes(1);
     await waitFor(() => screen.getByText("Error: Invalid IP"));
