@@ -1,6 +1,6 @@
 
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Header from "../src/Header";
 import { click } from "@testing-library/user-event/dist/click";
 import { LangContext, LangProvider } from "../src/LangProvider";

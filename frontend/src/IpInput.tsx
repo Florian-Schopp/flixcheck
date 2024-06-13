@@ -14,7 +14,6 @@ const IpInput = (props: { fetch: (ip: string) => void }): JSX.Element => {
         } else {
             setError(undefined);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ip]);
     return (
         <div className="fit-content ip-input d-flex" style={{ height: "80%" }}>

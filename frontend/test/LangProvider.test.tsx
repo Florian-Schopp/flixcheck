@@ -1,8 +1,7 @@
 
 import React, { useContext } from "react";
-import { fireEvent, render, renderHook, screen, waitFor } from "@testing-library/react";
-import Header from "../src/Header";
-import { click } from "@testing-library/user-event/dist/click";
+import { renderHook, waitFor } from "@testing-library/react";
+
 import { LangContext, LangProvider } from "../src/LangProvider";
 
 describe("Language Context", () => {
@@ -22,6 +21,7 @@ describe("Language Context", () => {
             wrapper
         })
         expect(result.current.translate("invalidIP")).toEqual('Invalid IP')
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         expect(result.current.translate("invalidKey" as any)).toEqual('invalidKey')
         result.current.updateLanguage("EN")
         await waitFor(() => expect(result.current.language).toEqual('EN'))
