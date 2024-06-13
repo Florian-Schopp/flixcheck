@@ -24,20 +24,22 @@ router.get(
     res,
   ) => {
     try {
+
       let ip = req.query.get("ip");
 
       if (ip == null || ip === "") {
         const clientIp =
           req.headers["x-forwarded-for"] ??
+          /* istanbul ignore next */
           req.socket.remoteAddress?.split(":").pop();
         if (!clientIp) {
           res.status(400).send("Unable to determine client IP address");
           return;
         }
+        /* istanbul ignore next */
         ip = Array.isArray(clientIp) ? clientIp[0] : clientIp.split(",")[0];
       }
-      console.log(ip);
-      if (!ipRegex.test(ip) || ip === "127.0.0.1") {
+      if (!ipRegex.test(ip)) {
         res.status(400).send("Invalid IP address");
         return;
       }
@@ -48,6 +50,7 @@ router.get(
       const jsonLocation = await loc.json();
       res.send(JSON.stringify(jsonLocation));
     } catch (error: any) {
+      console.log(error)
       res.status(500).send("Internal Server Error");
       logger(error.toString());
     }

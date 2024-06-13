@@ -14,11 +14,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api", apiRouter);
 
-// catch 404 and forward to error handler
-app.use((_req, resp) => {
-  resp.status(404).end();
-});
-
 app.listen(port, () => {
   logger(`[server]: Server is running at http://localhost:${port}`);
 });
