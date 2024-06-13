@@ -37,8 +37,6 @@ describe("App", () => {
 
 
     it("should fetch IP", async () => {
-
-
         window.scrollTo = jest.fn();
         window.fetch = jest
             .fn().mockResolvedValue({
