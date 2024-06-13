@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LangContext } from "./LangProvider";
 
-const IpInput = (props: { fetch: (ip: string) => void }): JSX.Element => {
+const IpInput = (props: { fetch: (ip: string) => Promise<void> }): JSX.Element => {
+  const [loading, setLoading] = useState(false)
   const ipRegex = new RegExp(
     /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/,
   );
@@ -16,6 +17,7 @@ const IpInput = (props: { fetch: (ip: string) => void }): JSX.Element => {
       setError(undefined);
     }
   }, [ip]);
+
   return (
     <div className="fit-content ip-input d-flex" style={{ height: "80%" }}>
       <div className="form-group fit-content h-100 align-content-center ">
@@ -24,24 +26,29 @@ const IpInput = (props: { fetch: (ip: string) => void }): JSX.Element => {
             <label htmlFor="ip-address" className="ip-label">
               {i18n.translate("ip")}
             </label>
-            <div className="d-flex">
+            <div className="d-flex gap-16">
               <input
-                className="form-control"
+                className="form-control ip-address"
                 id="ip-address"
                 aria-describedby="IP-Address"
                 placeholder={i18n.translate("leaveBlankForCurrentIP")}
                 value={ip}
                 onChange={(evt) => {
-                  setIp(evt.target.value);
+                  setIp(evt.target.value)
                 }}
               />
               <button
                 type="button"
-                className="btn btn-primary"
-                disabled={error != null}
-                onClick={() => props.fetch(ip)}
+                className="btn btn-primary locate"
+                disabled={error != null || loading}
+                onClick={() => {
+                  setLoading(true)
+                  props.fetch(ip).catch((err) => setError(err.toString())).finally(() => {
+                    setLoading(false)
+                  })
+                }}
               >
-                {i18n.translate("locate")}
+                {i18n.translate(loading ? "loading" : "locate")}
               </button>
             </div>
 

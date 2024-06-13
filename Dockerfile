@@ -33,6 +33,7 @@ COPY --from=backend /backend/doc /var/www/html/docs/
 
 # # Expose the port for the front-end
 EXPOSE 80
+EXPOSE 443
 EXPOSE 4000
 
 

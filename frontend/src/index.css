@@ -30,8 +30,16 @@ a:hover {
   }
 }
 
+.ip-address {
+  min-width: 300px;
+}
+
 .helper {
   min-height: 24px;
+}
+
+.locate {
+  min-width: 100px;
 }
 
 .to-top {

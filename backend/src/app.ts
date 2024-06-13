@@ -1,10 +1,10 @@
-import createError from 'http-errors'
 import express from 'express'
 import logger from 'morgan'
 import cors from "cors"
 import apiRouter from './routes/api';
 const port = process.env.PORT ?? 4000;
 const app = express();
+app.set("query parser", (queryString: any) => new URLSearchParams(queryString));
 
 // view engine setup
 app.use(logger('dev'));
@@ -21,5 +21,5 @@ app.use((_req, resp) => {
 });
 
 app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  logger(`[server]: Server is running at http://localhost:${port}`);
 });

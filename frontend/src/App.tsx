@@ -15,14 +15,20 @@ const App = () => {
   const [location, setLocation] = useState<location>();
 
   const locate = async (ip: string) => {
+
     const url = new URL(`${window.location.href}api/getLocation`);
     url.searchParams.set("ip", ip);
     const res = await fetch(url);
     if (!res.ok) {
-      return;
+
+      throw new Error("Invalid IP");
     }
     const jsonResponse = await res.json();
-    setLocation(jsonResponse);
+    if (jsonResponse.status === "success") {
+      setLocation(jsonResponse);
+    } else {
+      throw new Error("Invalid IP");
+    }
   };
 
   useEffect(() => {

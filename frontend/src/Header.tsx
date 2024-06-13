@@ -46,11 +46,7 @@ const Header = () => {
                 <div>Github Repository</div>
               </a>
             </li>
-            <li className="menu-item">
-              <a href="/contact" className="menu-link">
-                <div>Contact</div>
-              </a>
-            </li>
+
           </ul>
         </nav>
       </div>
