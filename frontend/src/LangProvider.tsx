@@ -12,7 +12,7 @@ export type langCtx = {
 // Create the language context
 export const LangContext = createContext<langCtx>({
   language: initialLanguage,
-  updateLanguage: () => { },
+  updateLanguage: () => {},
   translate: () => "",
 });
 
@@ -59,7 +59,7 @@ const translationKeys: Record<string, Record<transKeys, string>> = {
     leaveBlankForCurrentIP: "Leave blank for current IP",
     locate: "Locate",
     ipLocation: "IP Location",
-    loading: "Loading..."
+    loading: "Loading...",
   },
   de: {
     ip: "IP Addresse",
@@ -67,6 +67,6 @@ const translationKeys: Record<string, Record<transKeys, string>> = {
     leaveBlankForCurrentIP: "Für aktuelle IP leer lassen",
     locate: "Orten",
     ipLocation: "IP Standort",
-    loading: "Laden..."
+    loading: "Laden...",
   },
 };

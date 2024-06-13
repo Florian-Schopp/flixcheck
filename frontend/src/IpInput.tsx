@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LangContext } from "./LangProvider";
 
-const IpInput = (props: { fetch: (ip: string) => Promise<void> }): JSX.Element => {
-  const [loading, setLoading] = useState(false)
+const IpInput = (props: {
+  fetch: (ip: string) => Promise<void>;
+}): JSX.Element => {
+  const [loading, setLoading] = useState(false);
   const ipRegex = new RegExp(
     /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/,
   );
@@ -34,7 +36,7 @@ const IpInput = (props: { fetch: (ip: string) => Promise<void> }): JSX.Element =
                 placeholder={i18n.translate("leaveBlankForCurrentIP")}
                 value={ip}
                 onChange={(evt) => {
-                  setIp(evt.target.value)
+                  setIp(evt.target.value);
                 }}
               />
               <button
@@ -42,10 +44,13 @@ const IpInput = (props: { fetch: (ip: string) => Promise<void> }): JSX.Element =
                 className="btn btn-primary locate"
                 disabled={error != null || loading}
                 onClick={() => {
-                  setLoading(true)
-                  props.fetch(ip).catch((err) => setError(err.toString())).finally(() => {
-                    setLoading(false)
-                  })
+                  setLoading(true);
+                  props
+                    .fetch(ip)
+                    .catch((err) => setError(err.toString()))
+                    .finally(() => {
+                      setLoading(false);
+                    });
                 }}
               >
                 {i18n.translate(loading ? "loading" : "locate")}
