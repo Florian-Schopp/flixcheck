@@ -12,7 +12,7 @@ export type langCtx = {
 // Create the language context
 export const LangContext = createContext<langCtx>({
   language: initialLanguage,
-  updateLanguage: () => { },
+  updateLanguage: () => {},
   translate: () => "",
 });
 
