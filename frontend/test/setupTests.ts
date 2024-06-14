@@ -1,5 +1,5 @@
-import { configure } from '@testing-library/dom'
+import { configure } from "@testing-library/dom";
 
 configure({
-  testIdAttribute: 'id'
-})
+  testIdAttribute: "id",
+});
